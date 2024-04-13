@@ -1,50 +1,20 @@
-use crate::ast::{
-    Expr, Literal, Ident,
-    LogicalOp, ComparisonOp, UnaryOp, AccessOp, FunctionOp
-};
+use crate::ast::{Expr, Literal, AccessOp};
 use lalrpop_util::ParseError;
 
 grammar;
 
 pub Expr: Box<Expr> = {
-    <left:Expr> "||" <right:Calc> => Box::new(Expr::Logical(left, LogicalOp::Or, right)),
-    <left:Expr> "&&" <right:Calc> => Box::new(Expr::Logical(left, LogicalOp::And, right)),
-    Calc,
+    <left:Expr> <op:AccessOp> => Box::new(Expr::Access(left, op)),
+    Term,
 };
 
-Calc: Box<Expr> = {
-    <left:Calc> <op:ComparisonOp> <right:Unary> => Box::new(Expr::Comparison(left, op, right)),
-    Unary,
-}
-
-Unary: Box<Expr> = {
-    <op:UnaryOp> <right:Member> => Box::new(Expr::Unary(op, right)),
-    Member,
-}
-
-Member: Box<Expr> = {
-    <left:Member> <op:AccessOp> => Box::new(Expr::Access(left, op)),
-    Function,
-}
-
-Function: Box<Expr> = {
-    <left:Member> ".all(" <ident:Ident> "," <right:Expr> ")" => Box::new(Expr::Function(FunctionOp::All(left, ident, right))),
-    <left:Member> ".any(" <ident:Ident> "," <right:Expr> ")" => Box::new(Expr::Function(FunctionOp::Any(left, ident, right))),
-    <left:Member> ".contains(" <right:Literal> ")" => Box::new(Expr::Function(FunctionOp::Contains(left, right))),
-    <left:Member> ".count()" => Box::new(Expr::Function(FunctionOp::Count(left))),
-    <left:Member> ".filter(" <ident:Ident> "," <right:Expr> ")" => Box::new(Expr::Function(FunctionOp::Filter(left, ident, right))),
-    Term
-}
-
 Term: Box<Expr> = {
-    Ident => Box::new(Expr::Ident(<>)),
     Literal => Box::new(Expr::Literal(<>)),
     "[" <WithCommas<Term>> "]" => Box::new(Expr::List(<>)),
     "(" <Expr> ")",
 }
 
 AccessOp: AccessOp = {
-    "." <field:Ident> => AccessOp::Field(field),
     r"\[[0-9]+\]" =>? {
         let parts = &<>[1..(<>.len() - 1)];
         let index = parts.parse::<u32>().map_err(|e| ParseError::User{
@@ -53,17 +23,6 @@ AccessOp: AccessOp = {
 
         Ok(AccessOp::Index(index))
     },
-    r"\[[0-9]+\.\.[0-9]+\]" =>? {
-        let parts: Vec<String> = <>[1..(<>.len() - 1)].split("..").map(|s| s.to_string()).collect();
-        let start = parts[0].parse::<u32>().map_err(|e| ParseError::User{
-            error: "unable to parse access operation to u32",
-        })?;
-        let end = parts[1].parse::<u32>().map_err(|e| ParseError::User{
-            error: "unable to parse access operation to u32",
-        })?;
-
-        Ok(AccessOp::Slice(start, end))
-    }
 }
 
 WithCommas<T>: Vec<T> = {
@@ -76,25 +35,7 @@ WithCommas<T>: Vec<T> = {
     }
 };
 
-UnaryOp: UnaryOp = {
-    "!" => UnaryOp::Not,
-    "-" => UnaryOp::Negative,
-}
-
-ComparisonOp: ComparisonOp = {
-    "<" => ComparisonOp::LessThan,
-    "<=" => ComparisonOp::LessThanOrEqual,
-    ">" => ComparisonOp::GreaterThan,
-    ">=" => ComparisonOp::GreaterThanOrEqual,
-    "==" => ComparisonOp::Equals,
-    "!=" => ComparisonOp::NotEquals,
-    "in" => ComparisonOp::In,
-}
-
 Literal: Literal = {
-    // bool
-    "true" => Literal::Bool(true),
-    "false" => Literal::Bool(false),
     // int
     "0" => Literal::Int(0),
     r"[1-9]+[0-9]*" =>? {
@@ -104,18 +45,4 @@ Literal: Literal = {
 
         Ok(Literal::Int(i))
     },
-    // string
-    r#"'[^'\n]*'"# => Literal::String(<>.replace("\'", "")),
-}
-
-Ident: Ident = {
-    // variable
-    r"[a-zA-Z][_a-zA-Z0-9]*" => Ident::Variable(<>.to_string()),
-
-    // reserved keywords
-    "activity" => Ident::Keyword(<>.into()),
-    "approvers" => Ident::Keyword(<>.into()),
-    "private_key" => Ident::Keyword(<>.into()),
-    "wallet" => Ident::Keyword(<>.into()),
-    "eth.tx" => Ident::Keyword(<>.into()),
 }
