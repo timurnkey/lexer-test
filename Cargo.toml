@@ -1,0 +1,23 @@
+[package]
+name = "lexer-test"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+lalrpop-util = { version = "0.19.9", features = ["lexer", "std"], default-features = false }
+lalrpop = { version = "0.19.9", features = ["lexer"], default-features = false, optional = true }
+
+[features]
+gen = ["lalrpop"]
+
+[lib]
+name = "lexer_test"
+
+[[bin]]
+name = "parser_generator"
+path = "src/main.rs"
+required-features = ["gen"]
+
+[[example]]
+name = "tester"
