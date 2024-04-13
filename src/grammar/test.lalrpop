@@ -10,9 +10,9 @@ pub Expr: Box<Expr> = {
 
 Term: Box<Expr> = {
     Literal => Box::new(Expr::Literal(<>)),
-    "[" <WithCommas<Term>> "]" => Box::new(Expr::List(<>)),
+    "[" <WithCommas<Expr>> "]" => Box::new(Expr::List(<>)),
     "(" <Expr> ")",
-}
+};
 
 AccessOp: AccessOp = {
     r"\[[0-9]+\]" =>? {
@@ -23,7 +23,7 @@ AccessOp: AccessOp = {
 
         Ok(AccessOp::Index(index))
     },
-}
+};
 
 WithCommas<T>: Vec<T> = {
     <mut v:(<T> ",")*> <e:T?> => match e {
@@ -45,4 +45,4 @@ Literal: Literal = {
 
         Ok(Literal::Int(i))
     },
-}
+};

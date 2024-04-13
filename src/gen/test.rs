@@ -1,5 +1,5 @@
 // auto-generated: "lalrpop 0.19.12"
-// sha3: 6199142b22a2c6d32c029b6bb82e435bbcf69c21615a5621f49573efb2656b7d
+// sha3: 287e780aebee88dd1742a043e2b2167bc4167c2e42b04c238f35cbb1c63d3f6e
 use crate::ast::{Expr, Literal, AccessOp};
 use lalrpop_util::ParseError;
 #[allow(unused_extern_crates)]
@@ -29,47 +29,47 @@ mod __parse__Expr {
         Variant1(Box<Expr>),
         Variant2(alloc::vec::Vec<Box<Expr>>),
         Variant3(AccessOp),
-        Variant4(Literal),
-        Variant5(core::option::Option<Box<Expr>>),
+        Variant4(core::option::Option<Box<Expr>>),
+        Variant5(Literal),
         Variant6(Vec<Box<Expr>>),
     }
     const __ACTION: &[i8] = &[
         // State 0
-        3, 0, 0, 9, 4, 0, 10, 0,
+        3, 0, 0, 11, 4, 0, 12, 0,
         // State 1
-        0, 0, 0, 0, 0, 0, 0, 12,
+        0, 0, 0, 0, 0, 0, 0, 14,
         // State 2
-        3, 0, 0, 9, 4, 0, 10, 0,
+        3, 0, 0, 11, 4, 0, 12, 0,
         // State 3
-        3, 0, 0, 9, 4, -17, 10, 0,
+        3, 0, 0, 11, 4, -17, 12, 0,
         // State 4
-        0, 15, 0, 0, 0, 0, 0, 12,
+        0, 16, 0, 0, 0, 0, 0, 14,
         // State 5
-        3, 0, 0, 9, 4, -19, 10, 0,
+        3, 0, 0, 11, 4, -19, 12, 0,
         // State 6
-        0, -11, -11, 0, 0, -11, 0, -11,
+        0, 0, 17, 0, 0, -16, 0, 14,
         // State 7
-        0, -8, 0, 0, 0, 0, 0, -8,
+        0, 0, 19, 0, 0, -18, 0, 14,
         // State 8
-        0, -9, -9, 0, 0, -9, 0, -9,
-        // State 9
-        0, -10, -10, 0, 0, -10, 0, -10,
-        // State 10
-        0, -7, 0, 0, 0, 0, 0, -7,
-        // State 11
-        0, -6, 0, 0, 0, 0, 0, -6,
-        // State 12
-        0, 0, 17, 0, 0, -16, 0, 0,
-        // State 13
-        0, 0, 0, 0, 0, 18, 0, 0,
-        // State 14
         0, -13, -13, 0, 0, -13, 0, -13,
+        // State 9
+        0, -8, -8, 0, 0, -8, 0, -8,
+        // State 10
+        0, -11, -11, 0, 0, -11, 0, -11,
+        // State 11
+        0, -12, -12, 0, 0, -12, 0, -12,
+        // State 12
+        0, -7, -7, 0, 0, -7, 0, -7,
+        // State 13
+        0, -6, -6, 0, 0, -6, 0, -6,
+        // State 14
+        0, 0, 0, 0, 0, 18, 0, 0,
         // State 15
-        0, 0, 19, 0, 0, -18, 0, 0,
+        0, -15, -15, 0, 0, -15, 0, -15,
         // State 16
         -4, 0, 0, -4, -4, -4, -4, 0,
         // State 17
-        0, -12, -12, 0, 0, -12, 0, -12,
+        0, -14, -14, 0, 0, -14, 0, -14,
         // State 18
         -5, 0, 0, -5, -5, -5, -5, 0,
     ];
@@ -90,47 +90,45 @@ mod __parse__Expr {
         // State 5
         0,
         // State 6
-        -11,
+        0,
         // State 7
-        -8,
+        0,
         // State 8
-        -9,
-        // State 9
-        -10,
-        // State 10
-        -7,
-        // State 11
-        -6,
-        // State 12
-        0,
-        // State 13
-        0,
-        // State 14
         -13,
-        // State 15
+        // State 9
+        -8,
+        // State 10
+        -11,
+        // State 11
+        -12,
+        // State 12
+        -7,
+        // State 13
+        -6,
+        // State 14
         0,
+        // State 15
+        -15,
         // State 16
         0,
         // State 17
-        -12,
+        -14,
         // State 18
         0,
     ];
     fn __goto(state: i8, nt: usize) -> i8 {
         match nt {
             2 => 5,
-            3 => 10,
+            3 => 12,
             4 => match state {
                 2 => 4,
+                3 => 6,
+                5 => 7,
                 _ => 1,
             },
-            5 => 6,
-            6 => match state {
-                3 => 12,
-                5 => 15,
-                _ => 7,
-            },
-            8 => 13,
+            6 => 8,
+            7 => 9,
+            8 => 14,
             _ => 0,
         }
     }
@@ -367,6 +365,12 @@ mod __parse__Expr {
                 __reduce8(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
             }
             9 => {
+                __reduce9(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            10 => {
+                __reduce10(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            11 => {
                 // Literal = r#"[1-9]+[0-9]*"# => ActionFn(8);
                 let __sym0 = __pop_Variant0(__symbols);
                 let __start = __sym0.0.clone();
@@ -375,14 +379,8 @@ mod __parse__Expr {
                     Ok(v) => v,
                     Err(e) => return Some(Err(e)),
                 };
-                __symbols.push((__start, __Symbol::Variant4(__nt), __end));
-                (1, 5)
-            }
-            10 => {
-                __reduce10(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
-            }
-            11 => {
-                __reduce11(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+                __symbols.push((__start, __Symbol::Variant5(__nt), __end));
+                (1, 6)
             }
             12 => {
                 __reduce12(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
@@ -448,14 +446,14 @@ mod __parse__Expr {
             _ => __symbol_type_mismatch()
         }
     }
-    fn __pop_Variant4<
+    fn __pop_Variant5<
       'input,
     >(
         __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>
     ) -> (usize, Literal, usize)
      {
         match __symbols.pop() {
-            Some((__l, __Symbol::Variant4(__v), __r)) => (__l, __v, __r),
+            Some((__l, __Symbol::Variant5(__v), __r)) => (__l, __v, __r),
             _ => __symbol_type_mismatch()
         }
     }
@@ -481,14 +479,14 @@ mod __parse__Expr {
             _ => __symbol_type_mismatch()
         }
     }
-    fn __pop_Variant5<
+    fn __pop_Variant4<
       'input,
     >(
         __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>
     ) -> (usize, core::option::Option<Box<Expr>>, usize)
      {
         match __symbols.pop() {
-            Some((__l, __Symbol::Variant5(__v), __r)) => (__l, __v, __r),
+            Some((__l, __Symbol::Variant4(__v), __r)) => (__l, __v, __r),
             _ => __symbol_type_mismatch()
         }
     }
@@ -512,7 +510,7 @@ mod __parse__Expr {
         _: core::marker::PhantomData<(&'input ())>,
     ) -> (usize, usize)
     {
-        // (<Term> ",") = Term, "," => ActionFn(14);
+        // (<Expr> ",") = Expr, "," => ActionFn(14);
         assert!(__symbols.len() >= 2);
         let __sym1 = __pop_Variant0(__symbols);
         let __sym0 = __pop_Variant1(__symbols);
@@ -531,7 +529,7 @@ mod __parse__Expr {
         _: core::marker::PhantomData<(&'input ())>,
     ) -> (usize, usize)
     {
-        // (<Term> ",")* =  => ActionFn(12);
+        // (<Expr> ",")* =  => ActionFn(12);
         let __start = __lookahead_start.cloned().or_else(|| __symbols.last().map(|s| s.2.clone())).unwrap_or_default();
         let __end = __start.clone();
         let __nt = super::__action12::<>(input, &__start, &__end);
@@ -547,7 +545,7 @@ mod __parse__Expr {
         _: core::marker::PhantomData<(&'input ())>,
     ) -> (usize, usize)
     {
-        // (<Term> ",")* = (<Term> ",")+ => ActionFn(13);
+        // (<Expr> ",")* = (<Expr> ",")+ => ActionFn(13);
         let __sym0 = __pop_Variant2(__symbols);
         let __start = __sym0.0.clone();
         let __end = __sym0.2.clone();
@@ -564,7 +562,7 @@ mod __parse__Expr {
         _: core::marker::PhantomData<(&'input ())>,
     ) -> (usize, usize)
     {
-        // (<Term> ",")+ = Term, "," => ActionFn(17);
+        // (<Expr> ",")+ = Expr, "," => ActionFn(17);
         assert!(__symbols.len() >= 2);
         let __sym1 = __pop_Variant0(__symbols);
         let __sym0 = __pop_Variant1(__symbols);
@@ -583,7 +581,7 @@ mod __parse__Expr {
         _: core::marker::PhantomData<(&'input ())>,
     ) -> (usize, usize)
     {
-        // (<Term> ",")+ = (<Term> ",")+, Term, "," => ActionFn(18);
+        // (<Expr> ",")+ = (<Expr> ",")+, Expr, "," => ActionFn(18);
         assert!(__symbols.len() >= 3);
         let __sym2 = __pop_Variant0(__symbols);
         let __sym1 = __pop_Variant1(__symbols);
@@ -639,13 +637,29 @@ mod __parse__Expr {
         _: core::marker::PhantomData<(&'input ())>,
     ) -> (usize, usize)
     {
-        // Literal = "0" => ActionFn(7);
-        let __sym0 = __pop_Variant0(__symbols);
+        // Expr? = Expr => ActionFn(10);
+        let __sym0 = __pop_Variant1(__symbols);
         let __start = __sym0.0.clone();
         let __end = __sym0.2.clone();
-        let __nt = super::__action7::<>(input, __sym0);
+        let __nt = super::__action10::<>(input, __sym0);
         __symbols.push((__start, __Symbol::Variant4(__nt), __end));
         (1, 5)
+    }
+    pub(crate) fn __reduce9<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // Expr? =  => ActionFn(11);
+        let __start = __lookahead_start.cloned().or_else(|| __symbols.last().map(|s| s.2.clone())).unwrap_or_default();
+        let __end = __start.clone();
+        let __nt = super::__action11::<>(input, &__start, &__end);
+        __symbols.push((__start, __Symbol::Variant4(__nt), __end));
+        (0, 5)
     }
     pub(crate) fn __reduce10<
         'input,
@@ -656,15 +670,15 @@ mod __parse__Expr {
         _: core::marker::PhantomData<(&'input ())>,
     ) -> (usize, usize)
     {
-        // Term = Literal => ActionFn(3);
-        let __sym0 = __pop_Variant4(__symbols);
+        // Literal = "0" => ActionFn(7);
+        let __sym0 = __pop_Variant0(__symbols);
         let __start = __sym0.0.clone();
         let __end = __sym0.2.clone();
-        let __nt = super::__action3::<>(input, __sym0);
-        __symbols.push((__start, __Symbol::Variant1(__nt), __end));
+        let __nt = super::__action7::<>(input, __sym0);
+        __symbols.push((__start, __Symbol::Variant5(__nt), __end));
         (1, 6)
     }
-    pub(crate) fn __reduce11<
+    pub(crate) fn __reduce12<
         'input,
     >(
         input: &'input str,
@@ -673,7 +687,24 @@ mod __parse__Expr {
         _: core::marker::PhantomData<(&'input ())>,
     ) -> (usize, usize)
     {
-        // Term = "[", WithCommas<Term>, "]" => ActionFn(4);
+        // Term = Literal => ActionFn(3);
+        let __sym0 = __pop_Variant5(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym0.2.clone();
+        let __nt = super::__action3::<>(input, __sym0);
+        __symbols.push((__start, __Symbol::Variant1(__nt), __end));
+        (1, 7)
+    }
+    pub(crate) fn __reduce13<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // Term = "[", WithCommas<Expr>, "]" => ActionFn(4);
         assert!(__symbols.len() >= 3);
         let __sym2 = __pop_Variant0(__symbols);
         let __sym1 = __pop_Variant6(__symbols);
@@ -682,9 +713,9 @@ mod __parse__Expr {
         let __end = __sym2.2.clone();
         let __nt = super::__action4::<>(input, __sym0, __sym1, __sym2);
         __symbols.push((__start, __Symbol::Variant1(__nt), __end));
-        (3, 6)
+        (3, 7)
     }
-    pub(crate) fn __reduce12<
+    pub(crate) fn __reduce14<
         'input,
     >(
         input: &'input str,
@@ -702,40 +733,7 @@ mod __parse__Expr {
         let __end = __sym2.2.clone();
         let __nt = super::__action5::<>(input, __sym0, __sym1, __sym2);
         __symbols.push((__start, __Symbol::Variant1(__nt), __end));
-        (3, 6)
-    }
-    pub(crate) fn __reduce13<
-        'input,
-    >(
-        input: &'input str,
-        __lookahead_start: Option<&usize>,
-        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
-        _: core::marker::PhantomData<(&'input ())>,
-    ) -> (usize, usize)
-    {
-        // Term? = Term => ActionFn(10);
-        let __sym0 = __pop_Variant1(__symbols);
-        let __start = __sym0.0.clone();
-        let __end = __sym0.2.clone();
-        let __nt = super::__action10::<>(input, __sym0);
-        __symbols.push((__start, __Symbol::Variant5(__nt), __end));
-        (1, 7)
-    }
-    pub(crate) fn __reduce14<
-        'input,
-    >(
-        input: &'input str,
-        __lookahead_start: Option<&usize>,
-        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
-        _: core::marker::PhantomData<(&'input ())>,
-    ) -> (usize, usize)
-    {
-        // Term? =  => ActionFn(11);
-        let __start = __lookahead_start.cloned().or_else(|| __symbols.last().map(|s| s.2.clone())).unwrap_or_default();
-        let __end = __start.clone();
-        let __nt = super::__action11::<>(input, &__start, &__end);
-        __symbols.push((__start, __Symbol::Variant5(__nt), __end));
-        (0, 7)
+        (3, 7)
     }
     pub(crate) fn __reduce15<
         'input,
@@ -746,7 +744,7 @@ mod __parse__Expr {
         _: core::marker::PhantomData<(&'input ())>,
     ) -> (usize, usize)
     {
-        // WithCommas<Term> = Term => ActionFn(21);
+        // WithCommas<Expr> = Expr => ActionFn(21);
         let __sym0 = __pop_Variant1(__symbols);
         let __start = __sym0.0.clone();
         let __end = __sym0.2.clone();
@@ -763,7 +761,7 @@ mod __parse__Expr {
         _: core::marker::PhantomData<(&'input ())>,
     ) -> (usize, usize)
     {
-        // WithCommas<Term> =  => ActionFn(22);
+        // WithCommas<Expr> =  => ActionFn(22);
         let __start = __lookahead_start.cloned().or_else(|| __symbols.last().map(|s| s.2.clone())).unwrap_or_default();
         let __end = __start.clone();
         let __nt = super::__action22::<>(input, &__start, &__end);
@@ -779,7 +777,7 @@ mod __parse__Expr {
         _: core::marker::PhantomData<(&'input ())>,
     ) -> (usize, usize)
     {
-        // WithCommas<Term> = (<Term> ",")+, Term => ActionFn(23);
+        // WithCommas<Expr> = (<Expr> ",")+, Expr => ActionFn(23);
         assert!(__symbols.len() >= 2);
         let __sym1 = __pop_Variant1(__symbols);
         let __sym0 = __pop_Variant2(__symbols);
@@ -798,7 +796,7 @@ mod __parse__Expr {
         _: core::marker::PhantomData<(&'input ())>,
     ) -> (usize, usize)
     {
-        // WithCommas<Term> = (<Term> ",")+ => ActionFn(24);
+        // WithCommas<Expr> = (<Expr> ",")+ => ActionFn(24);
         let __sym0 = __pop_Variant2(__symbols);
         let __start = __sym0.0.clone();
         let __end = __sym0.2.clone();
