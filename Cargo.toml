@@ -20,4 +20,4 @@ path = "src/main.rs"
 required-features = ["gen"]
 
 [[example]]
-name = "tester"
+name = "parse"

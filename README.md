@@ -14,8 +14,8 @@ cargo run --features=gen
 #### Example
 
 ```
-cargo run --example tester "<expression>"
-cargo run --example tester "[0,1,2][0]"
+cargo run --example parse "<expression>"
+cargo run --example parse "[0,1,2][0]"
 ```
 
 ### Problem
