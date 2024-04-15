@@ -4,7 +4,11 @@ use lalrpop_util::ParseError;
 grammar;
 
 pub Expr: Box<Expr> = {
-    <left:Expr> <op:AccessOp> => Box::new(Expr::Access(left, op)),
+    <left:Expr> "[" <lit:Literal> "]" =>? {
+        match lit {
+            Literal::Int(int) => Ok(Box::new(Expr::Access(left, AccessOp::Index(int.try_into().unwrap())))),
+        }
+    },
     Term,
 };
 
@@ -12,17 +16,6 @@ Term: Box<Expr> = {
     Literal => Box::new(Expr::Literal(<>)),
     "[" <WithCommas<Expr>> "]" => Box::new(Expr::List(<>)),
     "(" <Expr> ")",
-};
-
-AccessOp: AccessOp = {
-    r"\[[0-9]+\]" =>? {
-        let parts = &<>[1..(<>.len() - 1)];
-        let index = parts.parse::<u32>().map_err(|e| ParseError::User{
-            error: "unable to parse access operation to u32",
-        })?;
-
-        Ok(AccessOp::Index(index))
-    },
 };
 
 WithCommas<T>: Vec<T> = {
